@@ -6,3 +6,7 @@ from api.models import Note
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
     list_display = ['id','title','content','created_at','author']
+    
+    
+
+
