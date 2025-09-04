@@ -19,3 +19,12 @@ class NoteSerializer(serializers.ModelSerializer):
         extra_kwargs = {"author":{'read_only': True}}
         
 
+from .models import Account
+
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ["account_id", "introducer", "beneficiary", "created_by", "created_at"]
+        read_only_fields = ["account_id", "beneficiary", "created_by", "created_at"]
+
+

@@ -33,6 +33,22 @@ class NoteDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
     
     
+from rest_framework import generics
+from .models import Account
+from .serializers import AccountSerializer
+
+class AccountListView(generics.ListAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
+
+class AccountCreateView(generics.CreateAPIView):
+    serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
 
 
 
